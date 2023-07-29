@@ -5,7 +5,7 @@ from pygame.locals import QUIT
 pygame.init()
 Surface = pygame.display.set_mode((400,800))
 FPSCLOCK = pygame.time.Clock()
-pygame.display.set_caption("boong Window")
+pygame.display.set_caption("g Window")
 
 def main():
     while True:
