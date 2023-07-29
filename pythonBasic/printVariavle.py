@@ -8,3 +8,7 @@ print(second_varible-first_variable)
 print(second_varible)
 print(third_varible)
 
+#참과 거짓
+trueValue = True
+falseValue = False
+
