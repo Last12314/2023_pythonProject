@@ -44,3 +44,14 @@ SmallerThan1 = numA <= 20
 
 print(SmallerThan)
 print(SmallerThan1)
+
+andCondition = numA > 20 and numB > 3
+orCondition = numA > 20 or numB > 3
+
+print(andCondition)
+print(orCondition)
+
+print(True and True)
+print(True and False)
+print(False and True)
+print(False and False)
