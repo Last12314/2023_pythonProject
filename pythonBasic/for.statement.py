@@ -19,7 +19,7 @@ sum=0
 for i in scores:
  if i > 100 or i < 0:
   print("skip!", i)
-  break # for문이 완전히 나가짐
+  break # for문이 완전히 나가짐 ## continue는 for 문에서 필요 없는 값이 들어가면 skip하는 용도
  sum = sum + i
 
 average = sum / len(scores) #이 경우 정상적인 처리 x
