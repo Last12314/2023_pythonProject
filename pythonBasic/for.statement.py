@@ -19,10 +19,10 @@ sum=0
 for i in scores:
  if i > 100 or i < 0:
   print("skip!", i)
-  continue
+  break # for문이 완전히 나가짐
  sum = sum + i
 
-average = sum / len(scores)
+average = sum / len(scores) #이 경우 정상적인 처리 x
 print("총합", sum)
 print("평균 점수", average)
 

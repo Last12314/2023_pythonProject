@@ -26,7 +26,7 @@ equal = numA == numB
 notEqual = 5 !=4
 
 
-equal = numA ==20
+equal_1= numA == 20
 print(equal)
 print(notEqual)
 
