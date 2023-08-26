@@ -26,5 +26,8 @@ average = sum / len(scores) #이 경우 정상적인 처리 x
 print("총합", sum)
 print("평균 점수", average)
 
+#소숫점 이용하기
+#외부 라이브러로는 가능하지만
+#range함수 기준으로는 정수만 가능
 # for i in range(0,11):
 #  print(i) ## ctrl + / 는 주석처리
