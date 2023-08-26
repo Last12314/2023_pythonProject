@@ -33,7 +33,11 @@ user_input = -1
 
 while True:
     user_input = int(input("값을 입력하세요 >>"))
-    if user_input == answer:
-    print("정답입니다")
-    break
+    if user_input > answer:
+        print("down")
+    elif user_input < answer:
+        print("up")
+    elif user_input == answer:
+        print("정답입니다")
+        break
 
