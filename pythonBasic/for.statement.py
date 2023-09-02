@@ -30,4 +30,4 @@ print("평균 점수", average)
 #외부 라이브러로는 가능하지만
 #range함수 기준으로는 정수만 가능
 # for i in range(0,11):
-#  print(i) ## ctrl + / 는 주석처리
+#  print(i)   ## ctrl + / 는 주석처리
