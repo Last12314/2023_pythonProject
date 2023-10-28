@@ -25,19 +25,33 @@
 #     if user_input == 2:
 #         break
 
-import random
-answer = random.randrange(0, 10)
-user_input = -1
-
+# import random
+# answer = random.randrange(0, 10)
 # 사용자가 answer 맞출때까지 반복
 
-while True:
-    user_input = int(input("값을 입력하세요 >>"))
-    if user_input > answer:
-        print("down")
-    elif user_input < answer:
-        print("up")
-    elif user_input == answer:
-        print("정답입니다")
-        break
+# while True:
+#     user_input = int(input("값을 입력하세요 >>"))
+#     if user_input > answer:
+#         print("down")
+#     elif user_input < answer:
+#         print("up")
+#     elif user_input == answer:
+#         print("정답입니다")
+#         break
+import random
+answer = random.randrange(0, 10)
+chance = 3
 
+while chance > 0:
+    user_input = int(input("값을 입력하세요 >>"))
+    if user_input == answer:
+        print("correct")
+        break
+    else:
+        chance = chance -1
+        if user_input > answer:
+            print("down")
+        else:
+            print("up")
+if chance == 0:
+    print("game over")
