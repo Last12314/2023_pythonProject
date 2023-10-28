@@ -45,8 +45,8 @@ def runHangMan():
 
     hangman_input_history = []  #초기화 용
     word = str(GetRandomWord())
+    print("_" * len(word))
     chance = 7
-
     while chance > 0:
         alphabet = str(getHangmanInput())
 
@@ -64,7 +64,12 @@ def runHangMan():
     #알파벳이 워드에 속해있으면 정답이라고 알려주고, 아니면 기회를 깍기
     #기회가 8이상 틀렷을때는 게임 아웃
     #화면에 남은 횟수 보여주기
+    # 1. 모든 정답을 맞췄을때 게임이 끝나지 않음
+    # -> 맞추면 alive  출력해주고 그만하기 (break문을 사용)
 
+    # 2. 내가 맞춘 정답들이 어디에 위치해있는지 알수없음
+    # -> s _ _ s _ _ _ 출력
+    # printCorrectWords() 함수를 선언(optional)해서 그 안에서 입력되었던 맞는 항목을 위치에 맞게 출력
 
 def runUpDown():
     import random
