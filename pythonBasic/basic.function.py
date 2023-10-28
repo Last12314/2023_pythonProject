@@ -18,22 +18,22 @@ def menuPrint():
     print("2. 업다운")
     print("3. 종료")
     print("================")
+
 def GetRandomWord():
     import random
-    words = ["hang", "apple", "ant", "samsung", "MCdonalds", "fluent", "voca", "galaxy"]
+    words = ["hang", "apple", "ant", "samsung", "MCdonalds", "float", "voca", "galaxy"]
     return words[random.randrange(0, len(words))]
 
 def getHangmanInput():
     while True:
         user_input = input("Input alphabet ::: ")
-        if(user_input.isapha()):
+        if(user_input.isalpha()):  #알파벳인지 확인
             alphabet = user_input[0].lower
-            if(hangman_input_history.index(alphabet)):
+            if(alphabet in hangman_input_history):
                 print("이미 입력한 값이다. 다른 값을 입력해라.")
             else:
                 return alphabet
 
-hangman_input_history = []
 # 전역변수, 지역변수
 # 전역변수는 띄어쓰기 없이 사용되며 파이썬 전체에서 사용될 수 있다
 # 지역변수는 특정 구문이나 함수 안에 들어가 있는 변수
@@ -41,18 +41,40 @@ hangman_input_history = []
 # 또한 전역변수와 지역변수는 이름이 같지 않아야 한다
 
 def runHangMan():
-    hangman_input_history = []
-    word = GetRandomWord()
-    print("_"*len(word))
+    global hangman_input_history
 
-    alphabet = getHangmanInput(hangman_input_history)
+    hangman_input_history = []  #초기화 용
+    word = str(GetRandomWord())
+    print("_" * len(word))
+    chance = 7
+    while chance > 0:
+        alphabet = str(getHangmanInput())
+
+        hangman_input_history.append(alphabet)
+        if word.find(alphabet) != -1:
+            print("correct")
+        else:
+            chance = chance - 1
+            print("Left chance", chance)
+            if chance == 0:
+                print("Game Over")
+                break
 
 
+    #알파벳이 워드에 속해있으면 정답이라고 알려주고, 아니면 기회를 깍기
+    #기회가 8이상 틀렷을때는 게임 아웃
+    #화면에 남은 횟수 보여주기
+    # 1. 모든 정답을 맞췄을때 게임이 끝나지 않음
+    # -> 맞추면 alive  출력해주고 그만하기 (break문을 사용)
+
+    # 2. 내가 맞춘 정답들이 어디에 위치해있는지 알수없음
+    # -> s _ _ s _ _ _ 출력
+    # printCorrectWords() 함수를 선언(optional)해서 그 안에서 입력되었던 맞는 항목을 위치에 맞게 출력
 
 def runUpDown():
     import random
     answer = random.randrange(1, 10)
-    chance = 3
+    chance = 7
 
     while chance > 0:
         user_input = int(input("값을 입력하세요 >>"))
@@ -67,6 +89,7 @@ def runUpDown():
                 print("up")
     if chance == 0:
         print("game over")
+
 
 
 userInput = -1
