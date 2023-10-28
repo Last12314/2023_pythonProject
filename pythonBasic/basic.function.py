@@ -18,9 +18,10 @@ def menuPrint():
     print("2. 업다운")
     print("3. 종료")
     print("================")
+
 def GetRandomWord():
     import random
-    words = ["hang", "apple", "ant", "samsung", "MCdonalds", "fluent", "voca", "galaxy"]
+    words = ["hang", "apple", "ant", "samsung", "MCdonalds", "float", "voca", "galaxy"]
     return words[random.randrange(0, len(words))]
 
 def getHangmanInput():
@@ -33,7 +34,6 @@ def getHangmanInput():
             else:
                 return alphabet
 
-hangman_input_history = []
 # 전역변수, 지역변수
 # 전역변수는 띄어쓰기 없이 사용되며 파이썬 전체에서 사용될 수 있다
 # 지역변수는 특정 구문이나 함수 안에 들어가 있는 변수
@@ -41,20 +41,25 @@ hangman_input_history = []
 # 또한 전역변수와 지역변수는 이름이 같지 않아야 한다
 
 def runHangMan():
+    global hangman_input_history
+
     hangman_input_history = []  #초기화 용
-    word = GetRandomWord()
+    word = str(GetRandomWord())
     chance = 7
 
     while chance > 0:
-        alphabet = getHangmanInput()
+        alphabet = str(getHangmanInput())
 
         hangman_input_history.append(alphabet)
-
         if word.find(alphabet) != -1:
             print("correct")
         else:
             chance = chance - 1
             print("Left chance", chance)
+            if chance == 0:
+                print("Game Over")
+                break
+
 
     #알파벳이 워드에 속해있으면 정답이라고 알려주고, 아니면 기회를 깍기
     #기회가 8이상 틀렷을때는 게임 아웃
@@ -64,7 +69,7 @@ def runHangMan():
 def runUpDown():
     import random
     answer = random.randrange(1, 10)
-    chance = 3
+    chance = 7
 
     while chance > 0:
         user_input = int(input("값을 입력하세요 >>"))
@@ -79,6 +84,7 @@ def runUpDown():
                 print("up")
     if chance == 0:
         print("game over")
+
 
 
 userInput = -1
