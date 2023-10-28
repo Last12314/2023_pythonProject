@@ -6,6 +6,7 @@ def tmpFunction(x):
 
 print(tmpFunction(5))
 
+
 #개임 예시
 #화면 뿌려주기 <- 기늠
 #랜덤 값 할당 받기<- 기능
@@ -21,15 +22,15 @@ def menuPrint():
 
 def GetRandomWord():
     import random
-    words = ["hang", "apple", "ant", "samsung", "MCdonalds", "float", "voca", "galaxy"]
+    words = ["hang", "apple", "ant", "samsung", "mcdonalds", "float", "voca", "galaxy"]
     return words[random.randrange(0, len(words))]
 
 def getHangmanInput():
     while True:
         user_input = input("Input alphabet ::: ")
         if(user_input.isalpha()):  #알파벳인지 확인
-            alphabet = user_input[0].lower
-            if(alphabet in hangman_input_history):
+            alphabet = user_input[0].lower()
+            if(alphabet in hangman_input_history): #이미 입력한 값 인지
                 print("이미 입력한 값이다. 다른 값을 입력해라.")
             else:
                 return alphabet
@@ -42,10 +43,11 @@ def getHangmanInput():
 
 def runHangMan():
     global hangman_input_history
-
     hangman_input_history = []  #초기화 용
-    word = str(GetRandomWord())
+    word = GetRandomWord()
+    print("_" * len(word))
     chance = 7
+    correct = 0
 
     while chance > 0:
         alphabet = str(getHangmanInput())
@@ -53,17 +55,23 @@ def runHangMan():
         hangman_input_history.append(alphabet)
         if word.find(alphabet) != -1:
             print("correct")
+            correct = correct + 1
         else:
             chance = chance - 1
             print("Left chance", chance)
             if chance == 0:
                 print("Game Over")
                 break
+        if correct == len(word):
+            print("alive")
+            break
+
 
 
     #알파벳이 워드에 속해있으면 정답이라고 알려주고, 아니면 기회를 깍기
     #기회가 8이상 틀렷을때는 게임 아웃
     #화면에 남은 횟수 보여주기
+
 
 
 def runUpDown():
