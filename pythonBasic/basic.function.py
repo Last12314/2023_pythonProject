@@ -26,9 +26,9 @@ def GetRandomWord():
 def getHangmanInput():
     while True:
         user_input = input("Input alphabet ::: ")
-        if(user_input.isapha()):
+        if(user_input.isalpha()):  #알파벳인지 확인
             alphabet = user_input[0].lower
-            if(hangman_input_history.index(alphabet)):
+            if(alphabet in hangman_input_history):
                 print("이미 입력한 값이다. 다른 값을 입력해라.")
             else:
                 return alphabet
@@ -41,12 +41,24 @@ hangman_input_history = []
 # 또한 전역변수와 지역변수는 이름이 같지 않아야 한다
 
 def runHangMan():
-    hangman_input_history = []
+    hangman_input_history = []  #초기화 용
     word = GetRandomWord()
-    print("_"*len(word))
+    chance = 7
 
-    alphabet = getHangmanInput(hangman_input_history)
+    while chance > 0:
+        alphabet = getHangmanInput()
 
+        hangman_input_history.append(alphabet)
+
+        if word.find(alphabet) != -1:
+            print("correct")
+        else:
+            chance = chance - 1
+            print("Left chance", chance)
+
+    #알파벳이 워드에 속해있으면 정답이라고 알려주고, 아니면 기회를 깍기
+    #기회가 8이상 틀렷을때는 게임 아웃
+    #화면에 남은 횟수 보여주기
 
 
 def runUpDown():
