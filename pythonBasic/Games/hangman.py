@@ -1,30 +1,3 @@
-# f(x) = 3x + 5
-#함수는 def를 사용해 코드를 줄이고
-#이름을 잘 지으면 주석을 쓸 필요없이 무슨 기능을 하는지 알 수 있음
-
-
-
-
-def tmpFunction(x):
-    return x * 3 + 5
-
-
-print(tmpFunction(5))
-
-#개임 예시
-#화면 뿌려주기 <- 기늠
-#랜덤 값 할당 받기<- 기능
-#사용자 값 입력받기 <- 기능
-#값이랑 사용자 값 비교하기 <- 기능
-
-def menuPrint():
-    print("======GAME======")
-    print("1. 행맨")
-    print("2. 업다운")
-    print("3. 2048")
-    print("4. 종료")
-    print("================")
-
 def GetRandomWord():
     import random
     words = ["hang", "apple", "ant", "samsung", "mcdonalds", "float", "voca", "galaxy"]
@@ -100,36 +73,3 @@ def runHangMan():
     #알파벳이 워드에 속해있으면 정답이라고 알려주고, 아니면 기회를 깍기
     #기회가 8이상 틀렷을때는 게임 아웃
     #화면에 남은 횟수 보여주기
-
-
-
-def runUpDown():
-    import random
-    answer = random.randrange(1, 10)
-    chance = 7
-
-    while chance > 0:
-        user_input = int(input("값을 입력하세요 >>"))
-        if user_input == answer:
-            print("correct")
-            break
-        else:
-            chance = chance - 1
-            if user_input > answer:
-                print("down")
-            else:
-                print("up")
-    if chance == 0:
-        print("game over")
-
-
-userInput = -1
-
-while userInput != 3:
-    menuPrint()
-    userInput = int(input("SELECT MENU :::"))
-
-    if userInput == 1:
-        runHangMan()
-    elif userInput ==2:
-        runUpDown()
