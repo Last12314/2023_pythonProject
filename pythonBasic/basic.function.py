@@ -6,7 +6,6 @@ def tmpFunction(x):
 
 print(tmpFunction(5))
 
-
 #개임 예시
 #화면 뿌려주기 <- 기늠
 #랜덤 값 할당 받기<- 기능
@@ -41,31 +40,54 @@ def getHangmanInput():
 # 구문이나 함수 안에서만 사용되고 그 함수가 끝나면 변수는 소멸된다
 # 또한 전역변수와 지역변수는 이름이 같지 않아야 한다
 
+def printPresentWords(word):
+    printStr = ""
+    for i in word:
+        if i in hangman_input_history:
+            printStr = printStr + i
+        else:
+            printStr = printStr + "_"
+        printStr = printStr + " "
+
+    print(printStr)
+
 def runHangMan():
     global hangman_input_history
-    hangman_input_history = []  #초기화 용
-    word = GetRandomWord()
-    wordSet = set(word)
-    print("_" * len(word))
+
+    # 초기화용 코드
+    hangman_input_history = []
     chance = 7
     correct = 0
 
+    word = GetRandomWord()
+    wordSet = set(word)
+
     while chance > 0:
+
+        printPresentWords(word)
+
         alphabet = str(getHangmanInput())
 
         hangman_input_history.append(alphabet)
-        if word.find(alphabet) != -1:
-            print("correct")
-            correct = correct + 1
+
+        if word.find(alphabet) != -1:  # alphabet이 word에 속해있으면 정답이라고 알려주고, 아니면 기회를 깎기.
+            correct = correct +1
+            print("CORRECT!")
         else:
             chance = chance - 1
-            print("Left chance", chance)
+
             if chance == 0:
-                print("Game Over")
-                break
-        if correct >= len(wordSet):
-            print("alive")
+                print("You Die")
+            else:
+                print("LEFT CHANCE : ", chance)
+
+
+        if correct >= len(wordSet): # 정답을 맞췄을때 게임 종료
+            print("Alive!")
             break
+
+
+
 
 
 
