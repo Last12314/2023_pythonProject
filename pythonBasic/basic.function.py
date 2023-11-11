@@ -22,15 +22,24 @@ def menuPrint():
 
 def GetRandomWord():
     import random
+
     words = ["hang", "apple", "ant", "samsung", "mcdonalds", "float", "voca", "galaxy"]
+=======
+    words = ["hang", "apple", "ant", "samsung", "MCdonalds", "float", "voca", "galaxy"]
+
     return words[random.randrange(0, len(words))]
 
 def getHangmanInput():
     while True:
         user_input = input("Input alphabet ::: ")
         if(user_input.isalpha()):  #알파벳인지 확인
+
             alphabet = user_input[0].lower()
             if(alphabet in hangman_input_history): #이미 입력한 값 인지
+
+            alphabet = user_input[0].lower
+            if(alphabet in hangman_input_history):
+
                 print("이미 입력한 값이다. 다른 값을 입력해라.")
             else:
                 return alphabet
@@ -43,11 +52,19 @@ def getHangmanInput():
 
 def runHangMan():
     global hangman_input_history
+
     hangman_input_history = []  #초기화 용
     word = GetRandomWord()
     print("_" * len(word))
     chance = 7
     correct = 0
+
+
+
+    hangman_input_history = []  #초기화 용
+    word = str(GetRandomWord())
+    print("_" * len(word))
+    chance = 7
 
     while chance > 0:
         alphabet = str(getHangmanInput())
@@ -55,16 +72,20 @@ def runHangMan():
         hangman_input_history.append(alphabet)
         if word.find(alphabet) != -1:
             print("correct")
+
             correct = correct + 1
+
         else:
             chance = chance - 1
             print("Left chance", chance)
             if chance == 0:
                 print("Game Over")
                 break
+
         if correct == len(word):
             print("alive")
             break
+
 
 
 
@@ -72,6 +93,15 @@ def runHangMan():
     #기회가 8이상 틀렷을때는 게임 아웃
     #화면에 남은 횟수 보여주기
 
+
+
+
+    # 1. 모든 정답을 맞췄을때 게임이 끝나지 않음
+    # -> 맞추면 alive  출력해주고 그만하기 (break문을 사용)
+
+    # 2. 내가 맞춘 정답들이 어디에 위치해있는지 알수없음
+    # -> s _ _ s _ _ _ 출력
+    # printCorrectWords() 함수를 선언(optional)해서 그 안에서 입력되었던 맞는 항목을 위치에 맞게 출력
 
 
 def runUpDown():
