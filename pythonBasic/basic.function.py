@@ -45,6 +45,7 @@ def runHangMan():
     global hangman_input_history
     hangman_input_history = []  #초기화 용
     word = GetRandomWord()
+    wordSet = set(word)
     print("_" * len(word))
     chance = 7
     correct = 0
@@ -62,7 +63,7 @@ def runHangMan():
             if chance == 0:
                 print("Game Over")
                 break
-        if correct == len(word):
+        if correct >= len(wordSet):
             print("alive")
             break
 
