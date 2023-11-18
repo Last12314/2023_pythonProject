@@ -46,8 +46,6 @@ def setEventListener():
                 print("오른쪽")
             elif event == pygame.K_LEFT:
                 print("왼쪽")
-            else:
-                print("키보드 키 입력 이벤트가 감지됨")
 
 def drawDisplay():
     baseX = 35
