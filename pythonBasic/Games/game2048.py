@@ -1,6 +1,88 @@
-def run2048():
-    print("2048 시작!")
+import pygame
 
+colors = {
+    'white': (255, 255, 255),
+    'black': (0, 0, 0),
+    '-1': (200, 200, 200),
+    '2': (224, 247, 250),
+    '4': (178, 235, 242),
+    '8': (128, 222, 234),
+    '16': (77, 208, 225),
+    '32': (38, 198, 218),
+    '64': (0, 188, 212),
+    '128': (0, 172, 193),
+    '256': (0, 151, 167),
+    '512': (0, 131, 143),
+    '1024': (0, 96, 100),
+    '2048': (0, 0, 0),
+}
+
+board = [[-1, -1, -1, -1],
+        [-1, -1, -1, -1],
+        [-1, -1, -1, -1],
+        [-1, -1, -1, -1]]
+
+size = (500, 500)
+screen = pygame.display.set_mode(size)
+
+
+def initScreen():
+    screen.fill(colors['white'])
+    pygame.display.update()
+
+isGameRunning = True
+
+def setEventListener():
+    global isGameRunning
+    for event in pygame.event.get():
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_q:
+                isGameRunning = False
+            elif event == pygame.K_DOWN:
+                print("아래")
+            elif event == pygame.K_UP:
+                print("위")
+            elif event == pygame.K_RIGHT:
+                print("오른쪽")
+            elif event == pygame.K_LEFT:
+                print("왼쪽")
+            else:
+                print("키보드 키 입력 이벤트가 감지됨")
+
+def drawDisplay():
+    baseX = 35
+    baseY = 35
+    blockHeight = 100
+    blockWidth = 100
+    margin = 10
+
+    for i in range(4):
+        for j in range(4):
+            x = (blockWidth + margin) * j + baseX
+            y = (blockHeight + margin) * i + baseY
+            data = str(board[i][j])
+            if data == '-1':  ##데이터가 없을때
+                pygame.draw.rect(screen, colors[data], [x, y, blockWidth, blockHeight], 2)  ## outline
+            else :
+                pygame.draw.rect(screen, colors[data], [x, y, blockWidth, blockHeight])
+    pygame.display.flip()
+
+
+
+
+def run2048():
+    pygame.init()
+    initScreen()
+    print("2048 게임 시작")
+
+    while isGameRunning:
+        setEventListener()
+        drawDisplay()
+
+
+    pygame.quit()
+
+run2048()
 
 
 '''
@@ -44,3 +126,30 @@ def run2048():
 
 4. 최종적으로 2048이 만들어졌으면 WIN.
 '''
+
+# i = 4
+# j = 4
+#
+# data = [[0]*i for k in range(j)]
+#
+# n=0
+# sw=1
+# end = len(data[0]) -1
+# start=0
+#
+# for i in range(len(data)):
+#     for j in range(start,end+sw,sw):
+#         n+=1
+#         data[i][j] += n
+#     start, end = end, start
+#     sw = sw* -1
+#
+# for i in range(len(data)):
+#     for j in range(len(data[0])):
+#         print("%2d" % data[i][j],end = ' ')
+#     print()
+
+# data =[["####", "####", "####", "####"], ["####", "####", "####", "####"], ["####", "####", "####", "####"], ["####", "####", "####", "####"]]
+# for i in range(4):
+#     print(data[0], data[1], data[2], data[3])
+#     print()
