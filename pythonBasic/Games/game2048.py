@@ -1,5 +1,9 @@
 import pygame
+import random
 
+
+
+# 색상 dictionary
 colors = {
     'white': (255, 255, 255),
     'black': (0, 0, 0),
@@ -17,11 +21,15 @@ colors = {
     '2048': (0, 0, 0),
 }
 
+
+# 실제 게임 로직이 반영될 보드
 board = [[-1, -1, -1, -1],
         [-1, -1, -1, -1],
         [-1, -1, -1, -1],
         [-1, -1, -1, -1]]
 
+
+# 화면 관련 설정
 size = (500, 500)
 screen = pygame.display.set_mode(size)
 
@@ -30,6 +38,21 @@ def initScreen():
     screen.fill(colors['white'])
     pygame.display.update()
 
+
+def addNewBlock():
+    canSet = False
+    while not canSet:
+        randomX = random.randint(0, 3)
+        randomY = random.randint(0, 3)
+
+        if board[randomX][randomY] == -1:
+            canSet = True
+
+
+    board[randomX][randomY] = 2 if random.randint(1,10) < 10 else 4  #10분의 1의 확률로 4, 이외에는 2가 추가되도록.
+
+
+# 게임 진행 flag 변수
 isGameRunning = True
 
 def setEventListener():
@@ -38,6 +61,8 @@ def setEventListener():
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_q:
                 isGameRunning = False
+                return
+
             elif event == pygame.K_DOWN:
                 print("아래")
             elif event == pygame.K_UP:
@@ -46,6 +71,8 @@ def setEventListener():
                 print("오른쪽")
             elif event == pygame.K_LEFT:
                 print("왼쪽")
+
+            addNewBlock()
 
 def drawDisplay():
     baseX = 35
@@ -60,9 +87,9 @@ def drawDisplay():
             y = (blockHeight + margin) * i + baseY
             data = str(board[i][j])
             if data == '-1':  ##데이터가 없을때
-                pygame.draw.rect(screen, colors[data], [x, y, blockWidth, blockHeight], 2)  ## outline
+                pygame.draw.rect(screen, colors[data], [x, y, blockWidth, blockHeight], 2)  # outlined rect
             else :
-                pygame.draw.rect(screen, colors[data], [x, y, blockWidth, blockHeight])
+                pygame.draw.rect(screen, colors[data], [x, y, blockWidth, blockHeight])   # filled rect
     pygame.display.flip()
 
 
