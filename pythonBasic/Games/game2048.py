@@ -56,13 +56,13 @@ def addNewBlock():
 isGameRunning = True
 
 def setEventListener():
+    global board
     global isGameRunning
     for event in pygame.event.get():
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_q:
                 isGameRunning = False
                 return
-
             elif event == pygame.K_DOWN:
                 print("아래")
             elif event == pygame.K_UP:
@@ -73,6 +73,26 @@ def setEventListener():
                 print("왼쪽")
 
             addNewBlock()
+
+
+def merge2048_Right():
+    for i in range(4):
+        for j in range(4):
+            if board[i][j] == -1:
+                pass
+            else:
+                for a in range(0, 4):
+                    if board[i][j+1] == -1:
+                        board[i][j+1] = board[i][j]
+                        board[i][j-1] = -1
+                    else:
+                        if board[i][j+1] == board[i][j]:
+
+
+
+
+
+
 
 def drawDisplay():
     baseX = 35
@@ -94,15 +114,24 @@ def drawDisplay():
 
 
 
+def start2048():
+    for i in range(0, 2):
+        randomx = random.randint(0, 3)
+        randomy = random.randint(0, 3)
+        board[randomx][randomy] = 2
+
 
 def run2048():
     pygame.init()
     initScreen()
     print("2048 게임 시작")
+    start2048()
 
     while isGameRunning:
         setEventListener()
         drawDisplay()
+
+
 
 
     pygame.quit()
